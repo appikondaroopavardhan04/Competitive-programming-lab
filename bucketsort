@@ -1,0 +1,23 @@
+n = int(input())
+raw_inputs = input().split()
+
+buckets = [[] for _ in range(n)]
+
+for item in raw_inputs:
+    num = float(item)
+    index = int(num * n)
+    if index >= n:
+        index = n - 1
+    elif index < 0:
+        index = 0
+    buckets[index].append((num, item))
+
+for bucket in buckets:
+    bucket.sort(key=lambda x: x[0])
+
+result = []
+for bucket in buckets:
+    for num, original_str in bucket:
+        result.append(original_str)
+
+print(*result)
