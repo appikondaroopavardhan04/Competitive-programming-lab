@@ -1,0 +1,13 @@
+n=int(input())
+arr=list(map(int,input().split()))
+maxim=max(arr) 
+minim=min(arr) 
+ran=maxim-minim+1  
+count=[0]*ran 
+output=[]
+for i in arr: 
+    count[i-minim]+=1 
+ 
+for i in range(minim,maxim+1): 
+    output.extend([i]*count[i-minim])
+print(*output)
