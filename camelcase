@@ -1,0 +1,21 @@
+n = int(input())
+words = input().split(",")
+pattern = input()
+
+result = []
+
+for word in words:
+    
+    abbreviation = "".join([ch for ch in word if ch.isupper()])
+    
+   
+    if abbreviation.startswith(pattern):
+        result.append(word)
+
+
+if not result:
+    print("No match found")
+else:
+    result.sort()
+    for word in result:
+        print(word)
