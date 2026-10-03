@@ -1,0 +1,40 @@
+import sys
+
+def solve():
+  
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+    
+    s = input_data[0]
+    
+    visited = 0
+    duplicates = 0
+    
+   
+    for char in s:
+        bit_pos = ord(char) - ord('a')
+        if (visited & (1 << bit_pos)) != 0:
+            duplicates |= (1 << bit_pos)  # Mark as a duplicate character
+        else:
+            visited |= (1 << bit_pos)      # Mark as visited
+            
+    
+    result = []
+    seen_printed = 0
+    
+    for char in s:
+        bit_pos = ord(char) - ord('a')
+       
+        if (duplicates & (1 << bit_pos)) != 0 and (seen_printed & (1 << bit_pos)) == 0:
+            result.append(char)
+            seen_printed |= (1 << bit_pos)
+
+   
+    if result:
+        print(" ".join(result))
+    else:
+        print("No duplicates")
+
+if __name__ == '__main__':
+    solve()
